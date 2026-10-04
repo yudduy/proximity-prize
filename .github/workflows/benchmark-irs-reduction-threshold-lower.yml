@@ -2,6 +2,9 @@ name: IRS Reduction Threshold Lower Benchmark
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - codex/prove2me-official-submission-a-20261004
 
 permissions:
   id-token: write
