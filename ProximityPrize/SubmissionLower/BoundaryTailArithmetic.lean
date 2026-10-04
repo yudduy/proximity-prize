@@ -1,4 +1,4 @@
-import ProximityPrize.SubmissionLower.MergedInfra6815_1
+import Mathlib.Tactic
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
 namespace ProximityPrize.SubmissionLower.BoundaryTail
@@ -39,5 +39,15 @@ theorem max_shift_identity {u v p : ℤ}
       max (p - (2 * u - v)) 0 := by
   simp [max_def]
   omega
+
+
+theorem weighted_tail_bound_of_nonnegative_gap {n j a b c : ℤ}
+    (hn : 2 ≤ n) (hj0 : 0 ≤ j) (hjn : j ≤ n - 1)
+    (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c)
+    (hab : a - b ≤ 2 * c) (hgap : b ≤ a) :
+    2 * (j * a + (n - 1 - j) * b + max (n - 2 - 2 * j) 0 * c) ≥
+      2 * (n - 1) * a - n * (a - b) := by
+  simpa only [max_eq_left (sub_nonneg.mpr hgap)] using
+    weighted_tail_bound hn hj0 hjn ha hb hc hab
 
 end ProximityPrize.SubmissionLower.BoundaryTail
